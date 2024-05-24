@@ -1,20 +1,7 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 
-const CostCard = ({
-  costs,
-  setCosts,
-  addCost,
-  date,
-  setDate,
-  item,
-  setItem,
-  amount,
-  setAmount,
-  description,
-  setDescription,
-}) => {
-  return costs.map((cost, index) => {
+const CostCard = ({ costs }) => {
+  return costs.map((cost) => {
     return (
       <ul key={cost.id}>
         <li>{cost.date}</li>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import MonthButton from "./MonthButton";
 import { v4 as uuidv4 } from "uuid";
-import CostCard from "./CostCard";
 
 const SubmitCost = () => {
   const [costs, setCosts] = useState([
@@ -20,31 +20,12 @@ const SubmitCost = () => {
     },
   ]);
   const [date, setDate] = useState("");
+  //이거를 MonthButton과 CostCard까지 쭉 이어줘야 함
   const [item, setItem] = useState("");
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const addCost = (event) => {
     event.preventDefault();
-
-    // type d = {
-    //   id: string;
-    //   amount: number;
-    // }
-
-    // export default function Home() {
-
-    //   let [data, setData] = useState<d>({
-    //     id: "",
-    //     amount: 0,
-    //   });
-
-    //   data.amount
-
-    //   setData({
-    //     id: "3",
-    //     amount: 1,
-    //   })
-
     const newCost = {
       id: uuidv4(),
       date,
@@ -63,7 +44,7 @@ const SubmitCost = () => {
   useEffect(() => {
     const storedCosts = JSON.parse(localStorage.getItem("costs")) || [];
     setCosts(storedCosts); //컴포넌트 마운트 시 한 번 실행. LS에서 costs가져와 이걸 초기값으로 지정
-  }, []); //의존성 배열이 비어있다. 아무도 나를 건드릴 수 없으셈
+  }, []); //의존성 배열 비어있음. 아무도 나를 건드릴 수 없으셈
 
   useEffect(() => {
     localStorage.setItem("costs", JSON.stringify(costs));
@@ -73,32 +54,36 @@ const SubmitCost = () => {
     <>
       <form onSubmit={addCost}>
         <div>
-          <label htmlFor="date">날짜</label>
+          <label htmlFor="date-input">날짜</label>
           <input
+            id="date-input"
             type="text"
             placeholder="YYYY-MM-DD"
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
 
-          <label htmlFor="item">항목</label>
+          <label htmlFor="item-input">항목</label>
           <input
+            id="item-input"
             type="text"
             placeholder="지출 항목"
             value={item}
             onChange={(event) => setItem(event.target.value)}
           />
 
-          <label htmlFor="amount">금액</label>
+          <label htmlFor="amount-input">금액</label>
           <input
+            id="amount-input"
             type="number"
             placeholder="지출 금액"
             value={amount}
             onChange={(event) => setAmount(event.target.value)}
           />
 
-          <label htmlFor="description">내용</label>
+          <label htmlFor="description-input">내용</label>
           <input
+            id="description-input"
             type="text"
             placeholder="지출 내용"
             value={description}
@@ -108,21 +93,7 @@ const SubmitCost = () => {
         <button type="submit">저장</button>
         {/* 저장 버튼 누를 때 유효성 검사 필요 */}
       </form>
-
-      <CostCard
-        costs={costs}
-        setCosts={setCosts}
-        addCost={addCost}
-        date={date}
-        setDate={setDate}
-        item={item}
-        setItem={setItem}
-        amount={amount}
-        setAmount={setAmount}
-        description={description}
-        setDescription={setDescription}
-      />
-      {/* 꽁꽁 얼어붙은 리액트 위로 드릴이 뚫고 갑니다~~~~ */}
+      <MonthButton costs={costs}></MonthButton>
     </>
   );
 };
