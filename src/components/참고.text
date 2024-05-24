@@ -1,0 +1,20 @@
+          
+    {dummy.map(e=>
+      <div key={uuid()}>{e}</div>
+      //리액트(내부적으로)에서 맵을 돌려서 자식을 여러개 찍어낼 떄
+      //각각 자식을 식별하기 위한 key
+      //실제로 props로 받아서 사용하지는 않음
+      //
+      )}
+          
+          
+    //각각 input에 대해 useState를 만듦 input에 onChange setItem  => SubmitCost에서 했음!
+
+  //trim에 대한 유효성 검사
+  if (!body.trim() || !title.trim()|| amount.trim()) || amount.trim() {
+  return alert()
+          
+  }  
+ {/* //정규식 YYYY-MM-DD */}
+          
+   button과 setDate함수 연결
