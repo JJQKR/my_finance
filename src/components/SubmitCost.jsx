@@ -25,6 +25,26 @@ const SubmitCost = () => {
   const [description, setDescription] = useState("");
   const addCost = (event) => {
     event.preventDefault();
+
+    // type d = {
+    //   id: string;
+    //   amount: number;
+    // }
+
+    // export default function Home() {
+
+    //   let [data, setData] = useState<d>({
+    //     id: "",
+    //     amount: 0,
+    //   });
+
+    //   data.amount
+
+    //   setData({
+    //     id: "3",
+    //     amount: 1,
+    //   })
+
     const newCost = {
       id: uuidv4(),
       date,
