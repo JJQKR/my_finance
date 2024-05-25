@@ -31,20 +31,19 @@ const monthArray = [
   "12월",
 ];
 
-const MonthButton = ({ costs }) => {
+const MonthButton = ({
+  costs,
+  handleClick,
+  selectedMonth,
+  setSelectedMonth,
+  activeIndex,
+  setActveIndex,
+}) => {
   // activeIndex와 selectedMonth의 인덱스를 하나로 통합(?)해서 사용하고 싶다
   // ${(props) => (props.$active ? "#b44bf1" : "#c8c5c5")}
   // active props를 이렇게 사용했듯이 아래 StButton 내에서 selectedMonth를 쓰고 싶다
 
-  // ===========> 핸들클릭에 setSelectedMonth(index + 1)로 성공!
-
-  const [selectedMonth, setSelectedMonth] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const handleClick = (index) => {
-    setActiveIndex(index);
-    setSelectedMonth(index + 1);
-  };
+  // ===========> 핸들클릭에 setSelectedMonth(index + 1)로 구현
 
   useEffect(() => {
     const storedMonth = JSON.parse(localStorage.getItem("selectedMonth")) || [];
@@ -54,6 +53,9 @@ const MonthButton = ({ costs }) => {
   useEffect(() => {
     localStorage.setItem("selectedMonth", JSON.stringify(selectedMonth));
   }, [selectedMonth]);
+
+  console.log(selectedMonth);
+  console.log(activeIndex);
 
   return (
     <div>
@@ -67,7 +69,7 @@ const MonthButton = ({ costs }) => {
         </StButton>
       ))}
 
-      <CostCard costs={costs}></CostCard>
+      <CostCard costs={costs} selectedMonth={selectedMonth}></CostCard>
     </div>
   );
 };
