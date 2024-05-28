@@ -33,11 +33,11 @@ const monthArray = [
 
 const MonthButton = ({
   costs,
+  setCosts,
   handleClick,
   selectedMonth,
   setSelectedMonth,
   activeIndex,
-  setActveIndex,
 }) => {
   // activeIndex와 selectedMonth의 인덱스를 하나로 통합(?)해서 사용하고 싶다
   // ${(props) => (props.$active ? "#b44bf1" : "#c8c5c5")}
@@ -69,7 +69,11 @@ const MonthButton = ({
         </StButton>
       ))}
 
-      <CostCard costs={costs} selectedMonth={selectedMonth}></CostCard>
+      <CostCard
+        costs={costs}
+        setCosts={setCosts}
+        selectedMonth={selectedMonth}
+      ></CostCard>
     </div>
   );
 };
